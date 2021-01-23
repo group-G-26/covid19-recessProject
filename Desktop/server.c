@@ -5,6 +5,7 @@
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
+#include<time.h>
 void error(const char *msg){
     perror(msg);
     exit(1);
@@ -30,23 +31,77 @@ int main(int argc ,char *argv[]){
     serv_addr.sin_port = htons(portno);
     if(bind(sockfd,(struct sockaddr *) &serv_addr , sizeof(serv_addr))<0)
             error("binding failed.");
-listen(sockfd,5);
+    listen(sockfd,5);
     clilen = sizeof(cli_addr);
 
     newsockfd = accept(sockfd , (struct sockaddr *)&cli_addr ,&clilen);
     if(newsockfd < 0)
     error("Error on Accept");
-
-
-
-
-
-
-
-
-
-
-
+	bzero(buffer,255);
+ 	 FILE *fp; 
+     char choice[255];
+     char apl[255];
+     char gender[255];
+     char cat[255];
+     char name[255];
+     char txt[] =".txt";
+     int addpatient(){
+     	fp = fopen("patientfile.txt","a");
+     	
+        printf("success\n");
+     	printf("Adding patient...\n");
+     	}
+     	
+     	int addpatientlist(){
+     	time_t t = time(NULL);
+  	struct tm tm = *localtime(&t);
+     	fprintf(fp,"%s ",name);
+     	fprintf(fp,"%04d-%02d-%02d ",tm.tm_year+1900,tm.tm_mon+1,tm.tm_mday );
+     	fprintf(fp,"%s ",gender);
+     	fprintf(fp,"%s \n",cat);
+     	printf("patient added!\n");
+     	fclose(fp);
+     	}
+     	int filetransfer(){
+     	   FILE *fp;
+     	   int words;
+            	fp = fopen("patientfile.txt","a");
+            	read(newsockfd, &words, sizeof(int));            
+        	read(newsockfd , buffer , 512);
+		fwrite(buffer,sizeof(char),words,fp);
+     	printf("The file was received successfully\n");
+     	}
+     	
+     	
+    read(newsockfd, choice, 255);
+    printf("choice is  %s\n",choice);
+    read(newsockfd , name , 255);
+     printf("name is %s\n",name);   
+     	if ((strcmp(choice,"addpatient")==0) && (strstr(name,txt))){
+     		printf("its a file\n");
+     		filetransfer();
+		printf("success\n");
+		goto q;
+     		}
+     		
+     		else if(strcmp(choice,"addpatient")==0){
+     		printf("selected\n");
+     		addpatient();
+     		 read(newsockfd,gender,255);
+     		 printf("gender is %s\n",gender);
+    		 read(newsockfd,cat,255);
+    		 printf("category is %s\n",cat);
+     		 read(newsockfd,apl,255);
+       		if(strcmp(apl,"addpatientlist")==0){
+     			printf("Adding patient 1...\n");
+     			addpatientlist();
+     	}	
+     		
+     		}
+	else{
+	printf("command not found!!\n");
+	}
+q:
 close(newsockfd);
     close(sockfd);
     return 0 ;
