@@ -44,10 +44,13 @@ bzero(buffer,255);
     char choice[255];
     char apl[255];
     char txt[] =".txt";
+    char uname[255];
     char c;
     int words=0;
     FILE *f;
-     
+    printf("Enter your username: ");
+    scanf("%s",uname);
+    write(sockfd,uname,255);  
     scanf("%s %s", choice,name);
     write(sockfd, choice, 255);   						
     write(sockfd, name, 255);
