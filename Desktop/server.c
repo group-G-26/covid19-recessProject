@@ -45,6 +45,7 @@ int main(int argc ,char *argv[]){
      char cat[255];
      char name[255];
      char txt[] =".txt";
+     char uname[255];
      int addpatient(){
      	fp = fopen("patientfile.txt","a");
      	
@@ -58,7 +59,8 @@ int main(int argc ,char *argv[]){
      	fprintf(fp,"%s ",name);
      	fprintf(fp,"%04d-%02d-%02d ",tm.tm_year+1900,tm.tm_mon+1,tm.tm_mday );
      	fprintf(fp,"%s ",gender);
-     	fprintf(fp,"%s \n",cat);
+     	fprintf(fp,"%s ",cat);
+     	fprintf(fp,"%s \n",uname);
      	printf("patient added!\n");
      	fclose(fp);
      	}
@@ -72,7 +74,8 @@ int main(int argc ,char *argv[]){
      	printf("The file was received successfully\n");
      	}
      	
-     	
+    read(newsockfd,uname,255);
+    printf("welcome %s!!\n",uname); 	
     read(newsockfd, choice, 255);
     printf("choice is  %s\n",choice);
     read(newsockfd , name , 255);
