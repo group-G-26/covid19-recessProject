@@ -46,6 +46,9 @@ int main(int argc ,char *argv[]){
      char name[255];
      char txt[] =".txt";
      char uname[255];
+     int count=0;
+     char district[255];
+    char c;
      int addpatient(){
      	fp = fopen("patientfile.txt","a");
      	
@@ -73,11 +76,33 @@ int main(int argc ,char *argv[]){
 		fwrite(buffer,sizeof(char),words,fp);
      	printf("The file was received successfully\n");
      	}
-     	
+     	int checkstatus(){
+     	//open the file
+    fp=fopen("patientfile.txt","r");
+    //check if file exists
+    if(fp==NULL){
+        printf("could not open file ");
+        return 0;
+    }
+    //extract characters from file and store in character c
+    for(c=getc(fp);c!=EOF; c=getc(fp)){
+        if(c=='\n'){ // increment if the character is newline
+        count++;}}
+    //close the file
+    fclose(fp);
+    printf("the file has %d cases \n", count);
+      return 0;
+     	}
     read(newsockfd,uname,255);
-    printf("welcome %s!!\n",uname); 	
+    printf("welcome %s!!\n",uname);
+    read(newsockfd,district,255);
+    printf("your district is %s.\n ",district); 	
     read(newsockfd, choice, 255);
     printf("choice is  %s\n",choice);
+    if(strcmp(choice,"Check_status")==0){
+     	checkstatus();
+     	goto q;}
+    else 	
     read(newsockfd , name , 255);
      printf("name is %s\n",name);   
      	if ((strcmp(choice,"addpatient")==0) && (strstr(name,txt))){
@@ -98,9 +123,9 @@ int main(int argc ,char *argv[]){
        		if(strcmp(apl,"addpatientlist")==0){
      			printf("Adding patient 1...\n");
      			addpatientlist();
-     	}	
+     			}
+     	}		
      		
-     		}
 	else{
 	printf("command not found!!\n");
 	}
