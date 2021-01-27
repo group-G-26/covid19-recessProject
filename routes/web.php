@@ -283,7 +283,9 @@ Route::delete('/del_staff/{id}', function ($id) {
 Route::any('/search_hospitals',function(Request $request){
     $q = $request->q;
 
-    $hospitals = Hospital::where('name','LIKE','%'.$q.'%')->paginate(5);
+    $hospitals = Hospital::where('name','LIKE','%'.$q.'%')
+    						->orWhere('category', 'LIKE','%'.$q.'%')
+    						->paginate(5);
 
     $staff = Staff::orderBy('id')->get();
 
@@ -302,6 +304,7 @@ Route::any('/search_staff',function(Request $request){
 
     $staff = Staff::where('staff_firstname','LIKE','%'.$q.'%')
     				->orWhere('staff_lastname','LIKE','%'.$q.'%')
+    				->orWhere('position', 'LIKE','%'.$q.'%')
     				->paginate(5);
 
     $hospitals = Hospital::orderBy('id')->get();
@@ -448,7 +451,7 @@ Route::get('/edit_staff/{id}', function($id){
             // checking if the health officer has reached 
             // required number of patients
 
-            if($numb == 100 && $staff->position == 'Health Officer'){
+            if($numb >= 100 && $staff->position == 'Health Officer'){
 
                 // change postion
 
@@ -458,7 +461,7 @@ Route::get('/edit_staff/{id}', function($id){
 
 		        $staffPromote->update();
 
-            }else if($numb == 900 && $staff->position == 'Senior Health Officer'){
+            }else if($numb >= 900 && $staff->position == 'Senior Health Officer'){
                 // change the positon
 
                 $staffPromote = Staff::find($staff->id);

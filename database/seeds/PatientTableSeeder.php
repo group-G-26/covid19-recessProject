@@ -12,6 +12,6 @@ class PatientTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(App\Patient::class, 50)->create();
+        factory(App\Patient::class, 880)->create();
     }
 }

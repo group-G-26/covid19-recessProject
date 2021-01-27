@@ -53,6 +53,12 @@
             max-height: 200px;
             overflow-y: scroll;
         }
+        .promotions li{
+            list-style: decimal;
+            font-size: 12px;
+            letter-spacing: 1px;
+            line-height: 30px;
+        }
         @media(max-width: 600px){
           .respond{
               display: none;

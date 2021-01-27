@@ -21,6 +21,6 @@ $factory->define(Patient::class, function (Faker $faker) {
     return [
         'pat_name' => $faker->name,
         'date' => $faker->dateTimeBetween('this week', '+11 month'),
-        'staff_id' => 52,
+        'staff_id' => 142,
     ];
 });

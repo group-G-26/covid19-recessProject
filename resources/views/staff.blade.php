@@ -56,7 +56,7 @@
                             <th>Hospital attached</th>
                             <th>No. of patients</th>
                             <th>Salary recieved</th>
-                            <td>Action</td>
+                            <th>Action</th>
                         </tr> 
                         
                         @if(count($staffs) > 0)

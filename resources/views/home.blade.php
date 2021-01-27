@@ -84,7 +84,25 @@
       <div class="card-group">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">{{ count($staffs) - 2 }}</h2>
+            <h2 class="card-title">
+
+              <?php
+              
+              //  Getting number of health officers
+
+                $officers = 0;
+
+                foreach($staffs as $staff){
+                    if($staff->position == 'Health Officer'){
+                        $officers = $officers + 1;
+                    }
+                }
+
+                echo $officers;
+
+              ?>
+
+            </h2>
 
               <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
               <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
@@ -262,14 +280,14 @@
                             // checking if the health officer has reached 
                                 // required number of patients
 
-                            if($numb > 100 && $staff->position == 'Health Officer'){
+                            if($numb >= 100 && $staff->position == 'Health Officer'){
 
                                 $x = $staff->staff_firstname.' '.$staff->staff_lastname;
 
                                 if(!in_array($x, $names))
                                    $names[] = $x;
 
-                            }else if($numb > 100 && $staff->position == 'Senior Head Officer'){
+                            }else if($numb >= 900 && $staff->position == 'Senior Health Officer'){
 
                                 $y = $staff->staff_firstname.' '.$staff->staff_lastname;
 
@@ -302,8 +320,8 @@
                   </ul>
                 </p>  
         </div>
-        <div class="card-footer" style="background: white;">
-            <a href="/confirm_promotions" type="button" class="btn btn-success" style="width:100%;">Confirm <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+        <div class="card-footer" style="background: white; border: none">
+            <a href="/confirm_promotions" type="button" class="btn btn-primary" style="width:100%;">Confirm <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
             <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
             <path d="M8.354 10.354l7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
             </svg></a>
@@ -365,6 +383,15 @@
             }
         }
     });
+
+    var list = document.getElementsByTagName('li')
+    
+    for(var x = 0; x < list.length; x++){
+      if(x % 2 == 0){
+         list[x].style.color = "#000000";
+      }
+    }
+
 </script>
 
 
