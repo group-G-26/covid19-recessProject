@@ -6,7 +6,7 @@ use Closure;
 
 use Auth;
 
-class isAdmin
+class IsAdmin
 {
     /**
      * Handle an incoming request.

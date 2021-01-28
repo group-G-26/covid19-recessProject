@@ -26,6 +26,14 @@
         .navbar-brand{
             font-size: 12px;
         }
+        body{
+
+            background: url("{{ asset('images/coronavirus.jpg') }}");
+           
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height:100vh;
+        }
     </style>
 </head>
 <body>
