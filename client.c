@@ -46,7 +46,9 @@ bzero(buffer,255);
     char txt[] =".txt";
     char uname[255];
     char district[255];
+    char temp[255];
     char c;
+    int find_result = 0;
     int words=0;
     int count;
     FILE *f;
@@ -60,10 +62,23 @@ bzero(buffer,255);
     if (strcmp(choice,"Check_status")==0){
     write(sockfd, choice, 255);
     read(sockfd,&count,255);
-     printf("the file has %d cases \n", count);
+     printf("the file has %d case(s) \n", count);
     
     goto q;
     
+    }
+    else if(strcmp(choice,"search")==0){
+    write(sockfd,choice,255);
+    scanf("%s",name);
+    write(sockfd,name,255);
+    read(sockfd,&find_result,255);
+    printf("%d matches\n",find_result);
+    for(int i=0;i<find_result;i++){
+    read(sockfd, temp, 255);
+    printf("%s ",temp);
+    printf("read");
+    }
+    goto q;
     }
     else
     write(sockfd, choice, 255); 
