@@ -48,6 +48,9 @@ int main(int argc ,char *argv[]){
      char uname[255];
      int count=0;
      char district[255];
+     char temp[255];
+     int line_num = 1;
+     int find_result = 0;
     char c;
      int addpatient(){
      	fp = fopen("patientfile.txt","a");
@@ -97,6 +100,48 @@ int main(int argc ,char *argv[]){
     
       return 0;
      	}
+     	int search(){
+     	
+     	if((fp = fopen("patientfile.txt", "r")) == NULL) {
+	printf("Error opening the file");
+		return(-1);
+	}
+
+	while(fgets(temp, 255, fp) != NULL) {
+		if((strstr(temp, name)) != NULL) {
+			find_result++;
+	}
+	     	
+		line_num++;
+		
+	}
+	printf("%d matches\n",find_result);
+	write(newsockfd,&find_result,255);
+	
+	rewind(fp);
+	
+	int line_num = 1;
+	while(fgets(temp, 255, fp) != NULL) {
+		if((strstr(temp, name)) != NULL) {
+			printf("A match found on line: %d\n", line_num);
+			printf("\n%s\n", temp);
+			write(newsockfd,temp,255);
+			find_result++;
+	}
+	     	
+		line_num++;
+		
+	}
+	if(find_result == 0) {
+		printf("\nSorry, couldn't find a match.\n");
+	}
+	//Close the file if still open.
+	if(fp) {
+		fclose(fp);
+	}
+	
+	}
+     	
     read(newsockfd,uname,255);
     printf("welcome %s!!\n",uname);
     read(newsockfd,district,255);
@@ -106,7 +151,13 @@ int main(int argc ,char *argv[]){
     if(strcmp(choice,"Check_status")==0){
      	checkstatus();
      	
-     	goto q;}
+     	goto q;
+     	}
+     	else if(strcmp(choice,"search")==0){
+     	read(newsockfd,name,255);
+     	search();
+     	goto q;
+     	}
     else 	
     read(newsockfd , name , 255);
      printf("name is %s\n",name);   
