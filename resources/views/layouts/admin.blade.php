@@ -13,10 +13,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+   
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+   
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -41,10 +43,10 @@
            border-radius: 0 0 0 0; 
         }
         .search-btn{
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 0 0 0;
         }
         .search-field{
-            border-radius: 10px 0 0 10px;
+            border-radius: 0 0 0 0;
         }
         .navbar-brand{
             font-size: 12px;
@@ -63,6 +65,19 @@
           .respond{
               display: none;
           }
+        }
+        body{
+
+            background: url("{{ asset('images/coronavirus.jpg') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: fixed;
+            min-height:100vh;
+        }
+        .pageTitle{
+            color: #fff;
+            font-family: algeria;
+            font-size: 40px;
         }
     </style>
 

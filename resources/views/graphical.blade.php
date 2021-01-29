@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +10,22 @@
 
                 <div class="card-body">
                    
-                    <p class="card-text"><canvas id="userChart" class="shadow-sm"></canvas></p>
+
+
+                    <p class="card-text">
+
+
+
+
+                        
+
+
+                        <canvas id="userChart" class="shadow-sm"></canvas>
+
+
+
+
+                    </p>
 
                     <p> <a href="/patients" type="button" class="btn btn-primary">Back</a> 
                     

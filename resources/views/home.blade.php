@@ -6,10 +6,7 @@
 <div class="container">
 
   <div class="row">
-
-
-        <!--   Alerts -->
-
+  <!--   Alerts -->
 
     <div class="col-md-12">
            

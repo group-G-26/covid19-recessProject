@@ -17,7 +17,7 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->name == 'administrator') {
+        if (Auth::check() &&  Auth::user()->name == 'administrator') {
              return $next($request);
         }
 
