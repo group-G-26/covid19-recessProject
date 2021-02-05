@@ -103,7 +103,7 @@
                                             }
                                         }
 
-                                        echo $numb;
+                                        echo number_format($numb);
 
                                   ?>
 
@@ -137,29 +137,29 @@
 
                                           if($staff->position == 'Director'){
                                               $dir = $dir + (0.05 * $all_deductions);
-                                              echo $dir;
+                                              echo number_format($dir);
                                           }
                                           if($staff->position == 'Administrator'){
                                               $admin = $admin + (0.25 * (0.025 * $all_deductions));
-                                              echo $admin;
+                                              echo number_format($admin);
                                           }
                                           if($staff->position == 'Supreintendant'){
                                               $supre = $supre + (0.025 * $all_deductions);
-                                              echo $supre;
+                                              echo number_format($supre);
                                           }
                                           if($staff->position == 'Health Officer'){
-                                              echo $h_o;
+                                              echo number_format($h_o);
                                           }
                                           if($staff->position == 'Senior Health Officer'){
-                                              echo $s_h_o;
+                                              echo number_format($s_h_o);
                                           }
                                           if($staff->position == 'Head Health Officer'){
-                                              echo $head_h_o;
+                                              echo number_format($head_h_o);
                                           }
 
 
                                       }else{
-                                          echo 'The treasury was unable to release funds!';
+                                          echo 'No salary paid!';
                                       }
                                     }else{
                                         echo 'Not paid yet';

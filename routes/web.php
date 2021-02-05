@@ -202,11 +202,7 @@ use App\Chart;
 	    
 	    return view('patients', ['staffs' => $staff, 'patients' => $patients, 'q' => $q]);
 
-	})->middleware('auth');
-
-
-
-	
+	})->middleware('auth');	
 
 
 ?>

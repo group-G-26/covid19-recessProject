@@ -73,7 +73,7 @@
 
 	                    	}
                             
-                            echo $numPatients;
+                            echo number_format($numPatients);
 
                     	?>
 
@@ -90,7 +90,7 @@
                    					$numStaff = $numStaff + 1;
                    				}
                    			}
-                   			echo $numStaff;
+                   			echo number_format($numStaff);
                    		?>
 
 

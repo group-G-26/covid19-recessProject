@@ -67,7 +67,7 @@
                             <tr>
                                <td>{{ $donation->id }}</td>
                                <td>{{ $donation->well_wisher }}</td>
-                               <td>{{ $donation->amount }}</td>
+                               <td>{{ number_format($donation->amount) }}</td>
                                <td>{{ substr($donation->created_at,0,10) }}</td>
                                <td>
 

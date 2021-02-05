@@ -9,21 +9,10 @@
                 <div class="card-header">Percentage change in enrollment figures!</div>
 
                 <div class="card-body">
-                   
-
 
                     <p class="card-text">
 
-
-
-
-                        
-
-
                         <canvas id="userChart" class="shadow-sm"></canvas>
-
-
-
 
                     </p>
 

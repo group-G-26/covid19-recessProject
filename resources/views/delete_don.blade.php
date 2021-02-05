@@ -19,7 +19,7 @@
 
                     <h4>Are you sure you want to delete the following record?</h4>
                     <p>Well Wisher : {{ $donation->well_wisher }}</p>
-                    <p>Amount : {{ $donation->amount }}</p>
+                    <p>Amount : {{ number_format($donation->amount) }}</p>
                 </div>
                    
 

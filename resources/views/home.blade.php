@@ -95,7 +95,7 @@
                     }
                 }
 
-                echo $officers;
+                echo number_format($officers);
 
               ?>
 
@@ -111,7 +111,7 @@
 
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">{{ count($hospitals) }}</h2>
+            <h2 class="card-title">{{ number_format(count($hospitals)) }}</h2>
 
             <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
@@ -140,7 +140,7 @@
                            
                         }
 
-                        echo $numb;
+                        echo number_format($numb);
                         
                   ?>
                         
@@ -156,7 +156,7 @@
 
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">{{ count($patients) }}</h2>
+            <h2 class="card-title">{{ number_format(count($patients)) }}</h2>
             <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
             <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.92 5.92 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z"/>
           </svg> Patients</p>
@@ -178,7 +178,7 @@
                         }
                     }
                     
-                    echo  $amount2.' Ugx!';
+                    echo  number_format($amount2).' Ugx!';
                 
 
                 ?>
@@ -196,7 +196,7 @@
                               $amount3 = $donation->amount + $amount3;
                           }
 
-                          echo  $amount3.' Ugx in total!';
+                          echo  number_format($amount3).' Ugx in total!';
                           
 
                       ?>

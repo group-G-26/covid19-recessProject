@@ -47,6 +47,7 @@
         }
         .search-field{
             border-radius: 0 0 0 0;
+            font-family: boopee;
         }
         .navbar-brand{
             font-size: 12px;
@@ -64,6 +65,9 @@
         @media(max-width: 600px){
           .respond{
               display: none;
+          }
+          .search-field{
+              width: 150px;
           }
         }
         body{
