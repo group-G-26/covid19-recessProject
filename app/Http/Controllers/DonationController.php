@@ -28,17 +28,12 @@ class DonationController extends Controller
 	public function registerDonation(Request $request)
 	{
 	    
-	    $validator = Validator::make($request->all(), [
-	    'well_wisher' => 'required|max:255',
-	    'amount' => 'required|max:255',
-		]);
+	    $validator = $request->validate([
+	        'well_wisher' => 'required|max:100',
+	        'amount' => 'required|max:100',
+	    ]);
 
-		if ($validator->fails()) {
-		    return redirect('don_reg_page')
-		        ->withInput()
-		        ->withErrors($validator);
-		}
-
+		
 		$donation = new Donation;
 	    $donation->well_wisher = $request->well_wisher;
 	    $donation->amount = $request->amount;
@@ -62,11 +57,10 @@ class DonationController extends Controller
 
 	public function editDonation(Request $request, $id)
 	{
-	    
-		$request->validate([
-            'well_wisher' => 'required',
-            'amount' => 'required|max:255'
-        ]);
+	    $validator = $request->validate([
+	        'well_wisher' => 'required|max:100',
+	        'amount' => 'required|max:100',
+	    ]);
 
         $donation = Donation::find($id);
 

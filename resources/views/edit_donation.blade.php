@@ -13,6 +13,17 @@
 	                <div class="card-body">
 
 	                    <form method="POST" action="/update_donation/{{ $donation->id }}">
+
+	                    	@if ($errors->any())
+							    <div class="alert alert-danger">
+							        <ul>
+							            @foreach ($errors->all() as $error)
+							                <li>{{ $error }}</li>
+							            @endforeach
+							        </ul>
+							    </div>
+							@endif
+							
 	                        @csrf
 	                        @method('PATCH')
 

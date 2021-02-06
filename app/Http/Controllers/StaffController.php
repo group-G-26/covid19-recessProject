@@ -37,26 +37,50 @@ class StaffController extends Controller
 	public function registerStaff(Request $request)
 	{
 	    
-	    $validator = Validator::make($request->all(), [
-	    'staff_firstname' => 'required|max:255',
-	    'staff_lastname' => 'required|max:255',
-	    'gender' => 'required|max:10',
-	    'position' => 'required|max:255',
-	    'hos_id' => 'required|max:30',
-		]);
+	    $validator = $request->validate([
 
-		if ($validator->fails()) {
-		    return redirect('staff_reg_page')
-		        ->withInput()
-		        ->withErrors($validator);
-		}
+	    	'staff_firstname' => 'required|max:100',
+		    'staff_lastname' => 'required|max:100',
+		    'gender' => 'required|max:10',
+		    'position' => 'required|max:50',
+	    ]);
+
+	    // Generating a hospital for the staff automatically
+
+		    // calculating number of staff in particular hospital
+
+	    	$hospitals = Hospital::orderBy('id')->get();
+	        $staffs = Staff::orderBy('id')->get();
+
+	        $hospitals_found = array();
+
+		    foreach ($hospitals as $hospital) {
+
+				$numStaff = 0;
+
+				foreach($staffs as $staff){
+					if($staff->hos_id == $hospital->id && $staff->position == 'Health Officer'){
+						$numStaff = $numStaff + 1;
+					}
+				}
+
+				if($numStaff <= 15 && $hospital->category == 'General Hospital'){
+					$hospitals_found[] = $hospital->id;
+				}
+
+           	}
+
+            // Getting the ID of the hospital
+
+            $hos_id = $hospitals_found[0];
+  	
 
 		$staff = new Staff;
 	    $staff->staff_firstname = $request->staff_firstname;
 	    $staff->staff_lastname = $request->staff_lastname;
 	    $staff->gender = $request->gender;
 	    $staff->position = $request->position;
-	    $staff->hos_id = $request->hos_id;
+	    $staff->hos_id = $hos_id;
 	    $staff->save();
 
 	    return redirect('/staff')
@@ -81,19 +105,14 @@ class StaffController extends Controller
 	{
 	    
 
-	    $validator = Validator::make($request->all(), [
-		    'staff_firstname' => 'required|max:255',
-		    'staff_lastname' => 'required|max:255',
-		    'gender' => 'required|max:10',
-		    'position' => 'required|max:255',
-		    'hos_id' => 'required|max:30',
-		]);
+	     $validator = $request->validate([
 
-		if ($validator->fails()) {
-		    return redirect('/staff_reg')
-		        ->withInput()
-		        ->withErrors($validator);
-		}
+	    	'staff_firstname' => 'required|max:100',
+		    'staff_lastname' => 'required|max:100',
+		    'gender' => 'required|max:10',
+		    'position' => 'required|max:50',
+		    'hos_id' => 'required|max:30',
+	    ]);
 
 		$staff = Staff::find($id);
 
