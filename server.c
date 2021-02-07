@@ -72,12 +72,18 @@ int main(int argc ,char *argv[]){
      	}
      	int filetransfer(){
      	   FILE *fp;
-     	   int words;
+     	   int words=0;
             	fp = fopen("patientfile.txt","a");
+            	if(fp==NULL){
+        printf("could not open file ");
+        return 0;
+    }
             	read(newsockfd, &words, sizeof(int));            
         	read(newsockfd , buffer , 512);
 		fwrite(buffer,sizeof(char),words,fp);
+		printf("%s",buffer);
      	printf("The file was received successfully\n");
+     	fclose(fp);
      	}
      	int checkstatus(){
      	//open the file
@@ -93,12 +99,9 @@ int main(int argc ,char *argv[]){
         count++;}}
     write(newsockfd,&count,255);    
     //close the file
-    fclose(fp);
+   
     printf("the file has %d cases \n", count);
-    
-    
-    
-      return 0;
+      fclose(fp);
      	}
      	int search(){
      	
@@ -146,29 +149,32 @@ int main(int argc ,char *argv[]){
     printf("welcome %s!!\n",uname);
     read(newsockfd,district,255);
     printf("your district is %s.\n ",district); 	
+    q:
     read(newsockfd, choice, 255);
     printf("choice is  %s\n",choice);
-    if(strcmp(choice,"Check_status")==0){
+    if(strcmp(choice,"exit")==0){
+	goto e;}
+    else if(strcmp(choice,"Check_status")==0){
      	checkstatus();
-     	
-     	goto q;
+     	puts("bye");
+     	goto e;
      	}
-     	else if(strcmp(choice,"search")==0){
+    else if(strcmp(choice,"search")==0){
      	read(newsockfd,name,255);
      	search();
      	goto q;
      	}
-    else 	
+    else if(strcmp(choice,"addpatient")==0){	
     read(newsockfd , name , 255);
      printf("name is %s\n",name);   
-     	if ((strcmp(choice,"addpatient")==0) && (strstr(name,txt))){
+     	if (strstr(name,txt)){
      		printf("its a file\n");
      		filetransfer();
 		printf("success\n");
 		goto q;
      		}
      		
-     		else if(strcmp(choice,"addpatient")==0){
+     	else	{
      		printf("selected\n");
      		addpatient();
      		 read(newsockfd,gender,255);
@@ -179,13 +185,16 @@ int main(int argc ,char *argv[]){
        		if(strcmp(apl,"addpatientlist")==0){
      			printf("Adding patient 1...\n");
      			addpatientlist();
+     			goto q;
      			}
-     	}		
+     	}	
+     	}	
      		
 	else{
 	printf("command not found!!\n");
+	goto q;
 	}
-q:
+e:
 close(newsockfd);
     close(sockfd);
     return 0 ;
