@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>COVID19 Management System</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+  </head>
+  <body>
+
+    <div class="container"> <!--Opens div for the whole body-->
+      <div class="nav-wrapper"> <!-- Opens div for the top prt of the page i.e menu icon, log out, etc-->
+        <div class="left-side"> <!-- Opens div for the left side of the top page-->
+          <div class="nav-link-wrapper"> <!-- This is a div for the links in the top part-->
+            <a href="Menu.html">MENU</a>
+          </div>
+        </div>
+
+        <div class="right-side"> <!-- Opens div for the right hand side of the top part of the page-->
+
+            <div class="nav-link-wrapper">
+              <a href="LogIn.html">Log Out</a>
+            </div>
+            <div class="brand">
+              Logged In As: <b>S.A</b>
+            </div>
+        </div>
+      </div>
+
+
+
+      <div class="content-wrapper">
+        <div class="HomePage-items-wrapper">
+          <div class="HomePage-item-wrapper">
+            <div class="HomePage-img-background" style="background-image:url(IMAGES/StaffREG.jpg)"></div>
+              <div class="img-text-wrapper">
+                <div class="logo-wrapper">
+                <a href="StaffReg.html"><img src="IMAGES/LOGOS/StaffRegIcon.png" alt=""></a>
+                </div>
+                  <div class="subtitle">
+                    <a href="StaffReg.html">REGISTER HEALTH OFFICERS</a>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+          <div class="HomePage-item-wrapper">
+            <div class="HomePage-img-background" style="background-image:url(IMAGES/Hospitals.jpg)"></div>
+              <div class="img-text-wrapper">
+                <div class="logo-wrapper">
+                <a href="hospital.html"><img src="IMAGES/LOGOS/HospitalIcon.jpg" alt=""></a>
+                </div>
+                  <div class="subtitle">
+                    <a href="hospital.html">HOSPITALS</a>
+                  </div>
+              </div>
+          </div>
+
+
+
+          <div class="HomePage-item-wrapper">
+            <div class="HomePage-img-background" style="background-image:url(IMAGES/Donations.jpg)"></div>
+              <div class="img-text-wrapper">
+                <div class="logo-wrapper">
+                <a href="Donations.html"> <img src="IMAGES/LOGOS/DonationsIcon.jpeg" alt=""></a>
+                </div>
+                  <div class="subtitle">
+                    <a href="Donations.html">DONATIONS</a>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+          <div class="HomePage-item-wrapper">
+            <div class="HomePage-img-background" style="background-image:url(IMAGES/StaffInfo.jpg)"></div>
+              <div class="img-text-wrapper">
+                <div class="logo-wrapper">
+                <a href="StaffInfo.html"><img src="IMAGES/LOGOS/StaffInfoIcon.jpeg" alt=""></a>
+                </div>
+                  <div class="subtitle">
+                    <a href="StaffInfo.html">STAFF INFORMATION</a>
+                  </div>
+              </div>
+          </div>
+
+
+
+          <div class="HomePage-item-wrapper">
+            <div class="HomePage-img-background" style="background-image:url(IMAGES/PatientsInfo.jpg)"></div>
+              <div class="img-text-wrapper">
+                <div class="logo-wrapper">
+                <a href="patientsINFO.html"><img src="IMAGES/LOGOS/PatientInfoIcon.png" alt=""> </a>
+                </div>
+                  <div class="subtitle">
+                    <a href="patientsINFO.html">PATIENTS INFORMATION</a>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+
+          <div class="HomePage-item-wrapper">
+            <div class="HomePage-img-background" style="background-image:url(IMAGES/Graphs.png)"></div>
+              <div class="img-text-wrapper">
+                <div class="logo-wrapper">
+                <a href="Graphs.html"><img src="IMAGES/LOGOS/GraphIcon.png" alt=""></a>  
+                </div>
+
+                  <div class="subtitle">
+                    <a href="Graphs.html">GRAPHS</a>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+
+      <div class="bottompage">
+
+
+    <table cellspacing="20">
+        <tr>
+          <td>
+              <img src="IMAGES/MinistryOfHealthLogo.png" width="200px" height="150px" alt="Ministry Of Health Logo">
+          </td>
+          <td>
+            <a href="HomePage.html">
+                <input class="btn" type="button" name="" value="PREVIOUS">
+            </a>
+          </td>
+          <td>
+            <img src="IMAGES/WHO.png " width="200px" height="150px" alt="World Health Organisation">
+
+          </td>
+        </tr>
+      </table>
+      </div>
+  </body>
+
+<script type="text/javascript">
+  const HomePageItems = document.querySelectorAll('.HomePage-item-wrapper')
+
+  HomePageItems.forEach(HomePageItem => {
+    HomePageItem.addEventListener('mouseover', () => {
+      HomePageItem.childNodes[1].classList.add('img-darken');
+
+    })
+    HomePageItem.addEventListener('mouseout', () => {
+      HomePageItem.childNodes[1].classList.remove('img-darken');
+
+    })
+
+
+  })
+
+</script>
+
+
+</html>

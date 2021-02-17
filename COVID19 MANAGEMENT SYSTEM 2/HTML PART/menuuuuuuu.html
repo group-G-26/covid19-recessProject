@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="CSS/styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"> </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+
+        <div class="btnn">
+          <span class="fas fa-bars"></span>
+
+        </div>
+
+
+        <nav class="sidebar">
+          <div class="textbox">MENU</div>
+          <ul>
+            <li> <a href="HomePage.html">Home Page</a> </li>
+            <li> <a href="StaffReg.html">Staff Registration</a> </li>
+            <li> <a href="hospital.html">Hospitals</a> </li>
+            <li> <a href="Donations.html">Donations</a> </li>
+            <li> <a href="StaffInfo.html" class="feat-btn">Staff Information
+                <span class="fas fa-caret-down"></span>
+            </a>
+                <ul class="feat-show">
+                  <li>Staff Information</li>
+                  <li>Hierarchical Table</li>
+                </ul>
+             </li>
+            <li> <a href="patientsINFO.html">Patients Information</a> </li>
+            <li> <a href="Graphs.html">Graphs</a> </li>
+
+
+          </ul>
+
+        </nav>
+
+            <script>
+            $('.btn').click(function(){
+              $(this).toggleClass("click");
+              $('.sidebar').toggleClass("show");
+            });
+
+
+
+              $('.feat-btn').click(function(){
+                $('nav ul .feat-show').toggleClass("show");
+              });
+
+            </script>
+
+
+
+
+
+
+  </body>
+</html>
