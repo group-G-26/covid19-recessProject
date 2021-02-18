@@ -32,11 +32,12 @@ int main(int argc ,char *argv[]){
     if(bind(sockfd,(struct sockaddr *) &serv_addr , sizeof(serv_addr))<0)
             error("binding failed.");
     listen(sockfd,5);
+     fprintf(stderr ,"server is listening at portno %d...\n",portno);
     clilen = sizeof(cli_addr);
-
     newsockfd = accept(sockfd , (struct sockaddr *)&cli_addr ,&clilen);
     if(newsockfd < 0)
     error("Error on Accept");
+   
 	bzero(buffer,255);
  	 FILE *fp; 
      char choice[255];
@@ -53,7 +54,7 @@ int main(int argc ,char *argv[]){
      int find_result = 0;
     char c;
      int addpatient(){
-     	fp = fopen("patientfile.txt","a");
+     	fp = fopen("enrolementfile.txt","a");
      	
         printf("success\n");
      	printf("Adding patient...\n");
@@ -73,7 +74,7 @@ int main(int argc ,char *argv[]){
      	int filetransfer(){
      	   FILE *fp;
      	   int words=0;
-            	fp = fopen("patientfile.txt","a");
+            	fp = fopen("enrolementfile.txt","a");
             	if(fp==NULL){
         printf("could not open file ");
         return 0;
@@ -87,7 +88,7 @@ int main(int argc ,char *argv[]){
      	}
      	int checkstatus(){
      	//open the file
-    fp=fopen("patientfile.txt","r");
+    fp=fopen("enrolementfile.txt","r");
     //check if file exists
     if(fp==NULL){
         printf("could not open file ");
@@ -105,7 +106,7 @@ int main(int argc ,char *argv[]){
      	}
      	int search(){
      	
-     	if((fp = fopen("patientfile.txt", "r")) == NULL) {
+     	if((fp = fopen("enrolementfile.txt", "r")) == NULL) {
 	printf("Error opening the file");
 		return(-1);
 	}
@@ -159,12 +160,12 @@ int main(int argc ,char *argv[]){
      	puts("bye");
      	goto e;
      	}
-    else if(strcmp(choice,"search")==0){
+    else if(strcmp(choice,"Search")==0){
      	read(newsockfd,name,255);
      	search();
      	goto q;
      	}
-    else if(strcmp(choice,"addpatient")==0){	
+    else if(strcmp(choice,"Addpatient")==0){	
     read(newsockfd , name , 255);
      printf("name is %s\n",name);   
      	if (strstr(name,txt)){
@@ -182,7 +183,7 @@ int main(int argc ,char *argv[]){
     		 read(newsockfd,cat,255);
     		 printf("category is %s\n",cat);
      		 read(newsockfd,apl,255);
-       		if(strcmp(apl,"addpatientlist")==0){
+       		if(strcmp(apl,"Addpatientlist")==0){
      			printf("Adding patient 1...\n");
      			addpatientlist();
      			goto q;
