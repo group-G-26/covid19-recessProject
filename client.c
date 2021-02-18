@@ -61,10 +61,31 @@ bzero(buffer,255);
 	puts("3.commands must be used as provided keeping in mind the case and symbols.");
 	puts("4. use of commands in a way contrary to the stated will lead to fatal errors.");
 	puts("do you wish to be reminded how the system works ? (y / n)");
-	scanf("%c",&rem);
+	scanf("%s",&rem);
 	if(rem=='y'){
 	puts("reminder loading.....");
+	puts("the system has 3 main functions,Addpatient, Check_status and Search");
+	puts("Strictly note that all commands are case senstive and should be used as provided");
+	puts("                                 ");
+	puts("the 'Addpatient' command can be used in two ways:");
+	puts("            (i)for a single occurance 'Addpatient patientName Gender category'");
+	puts("note: use of one patient name is recommended but incase you wish to use more than one name");
+	puts("      ..there should be no space between the names and cammel casing is recommended");
+        puts("      .. that is firstnameLastname");
+        puts("the 'Addpatient' command moves hand in hand with 'Addpatientlist' this adds the the stated patient to the file");
+        puts("            (ii)for a file 'Addpatient filename.txt'");
+        
+        puts("                                 ");
+        puts("the 'Check_status'command");
+        puts("this is the easiest command, its used as is but note that once used your session with the server ends");
+        puts("                                 "); 
+        puts("the'Search' command");
+        puts(" used like 'Search criteria'");  
+        puts("                                 ");     
+	puts("In case you forget how system works during usage,kindly end you session with the server");
+	puts("And on renewal request the reminder just like you did.");
 	puts("The command 'exit' ends session with the server");
+	puts("however Check_status also ends the session.");
 	puts("press enter to continue......");
 	scanf("%c",&cont);
 	}
@@ -82,13 +103,14 @@ bzero(buffer,255);
    
     printf("Welcome %s from %s \n",uname,district);
     
-   puts("what would you like to do: ");
+   
     a:
+    puts("what would you like to do ?: ");
     scanf("%s", choice);
     if(strcmp(choice,"exit")==0){
    
      write(sockfd,choice,255);
-     puts("thank you!!");
+     puts("you have choosen to exit");
      goto e;
     }
     else if (strcmp(choice,"Check_status")==0){
@@ -108,7 +130,7 @@ bzero(buffer,255);
     goto e;
     
     }
-    else if(strcmp(choice,"search")==0){
+    else if(strcmp(choice,"Search")==0){
     write(sockfd,choice,255);
     scanf("%s",name);
     write(sockfd,name,255);
@@ -121,7 +143,7 @@ bzero(buffer,255);
     }
     goto q;
     }
-    else if (strcmp(choice,"addpatient")==0){
+    else if (strcmp(choice,"Addpatient")==0){
     write(sockfd, choice, 255); 
     n:scanf("%s",name);  						
     
@@ -131,7 +153,7 @@ bzero(buffer,255);
      		f=fopen(name,"r");
      		if(f==NULL){
         printf("could not open file,Please try again.\n ");
-        puts("type filename as saved.");
+        puts("type filename as saved:");
         goto n;
         return 0;
     }
@@ -165,10 +187,17 @@ bzero(buffer,255);
     
 q:
 puts("To end session with server enter command 'exit'");
-puts("Anything else? ");
+puts("Anything else? {y/n}");
+scanf("%s",&con);
+    if(con=='n'){
+    puts("Goodbye..");
+    write(sockfd,"exit",255);
+    goto e;
+    }
 goto a;
 
 e:
+puts("thank you for your service.");
 close(sockfd);
 return 0;
 
